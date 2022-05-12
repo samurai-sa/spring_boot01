@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<div th:fragment="main">
+	    <h1>[[ ${title} ]]</h1>
+		<dl>
+			<dt>名前</dt>
+			<dd>[[ ${comment.name} ]]</dd>
+			<dt>本文</dt>
+			<dd>[[ ${comment.body} ]]</dd>
+			<dt>投稿日時</dt>
+			<dd>[[ ${#temporals.format(comment.createdAt, 'yyyy年MM月dd日hh:mm:ss')} ]]</dd>
+		</dl>
+		<div>
+			<a th:href="@{'/comments/update/' + ${comment.id}}">編集</a>
+		</div>
+		<form th:action="@{'/comments/delete/' + ${comment.id}}" method="post">
+        	<input type="submit" class="btn btn-default" name="delete" value="削除">
+        </form>
+	</div>
+</html>

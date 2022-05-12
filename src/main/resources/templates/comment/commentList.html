@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<div th:fragment="main">
+	    <h1>[[ ${title} ]]</h1>
+	    <a th:href="@{/comments/create}">新規登録</a>
+	    <ul th:each="comment : ${comments}">
+	  		 <li>
+	  		 	<a th:href="@{'/comments/detail/' + ${comment.id}}">
+		            [[ ${comment.name} ]]:
+		            [[ ${comment.body} ]]:
+		            [[ ${#temporals.format(comment.createdAt, 'yyyy/MM/dd')} ]]
+		        </a>
+		      </li>
+		</ul>
+	</div>
+</html>

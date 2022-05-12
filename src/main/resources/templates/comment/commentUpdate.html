@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<div th:fragment="main">
+	    <h1>[[ ${title} ]]</h1>
+	    <form method="post" th:action="@{'/update/' + ${comment.id}}" th:object="${commentsForm}">
+	        <ul>
+	            <li th:each="error : ${#fields.detailedErrors()}">
+	                <span th:text="${error.message}">エラー</span>
+	            </li>
+	        </ul>
+	        <div>
+	            <label for="title">名前: </label>
+	            <input type="text" id="name" th:field="*{name}">
+	        </div>
+	        <div>
+	            <label for="body">本文: </label>
+	            <input type="text" id="body" th:field="*{body}">
+	        </div>
+	        <input type="submit" value="更新">
+	    </form>
+	</div>
+</html>
